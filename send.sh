@@ -70,6 +70,13 @@ if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
 	COMMIT_OR_PR_URL=$BRANCH_OR_PR_URL
 fi
 
+if [ "$GITHUB_EVENT_NAME" == "project_card"]; then
+	COMMIT_SUBJECT="Project board has been updated"
+	COMMIT_MESSAGE="Updated by $GITHUB_ACTOR"
+	ACTION_URL="$BRANCH_OR_PR_URL/checks"
+	COMMIT_OR_PR_URL="$REPO_URL/projects"
+fi
+
 TIMESTAMP=$(date -u +%FT%TZ)
 WEBHOOK_DATA='{
   "username": "",
